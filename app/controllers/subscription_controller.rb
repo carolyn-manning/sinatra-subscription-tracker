@@ -16,7 +16,7 @@ class SubscriptionController < ApplicationController
             @subscription = Subscription.create(name: params[:name], price: params[:price], billing_frequency: params[:billing_frequency], renewal_date: params[:renewal_date])
             @subscription.user = current_user
             @subscription.save
-            redirect to '/show'
+            redirect to '/subscriptions'
         end       
     end
 
@@ -42,7 +42,7 @@ class SubscriptionController < ApplicationController
                 erb :'subscription/edit_subscription'
             else
                 #flash
-                redirect to '/show'
+                redirect to '/subscriptions'
             end 
         else 
             #flash
@@ -53,14 +53,14 @@ class SubscriptionController < ApplicationController
     patch '/subscriptions/:id' do
         @subscription = Subscription.find_by(id: params[:id])
         @subscription.update(price: params[:price], billing_frequency: params[:billing_frequency], renewal_date: params[:renewal_date])
-        redirect to "/show"
+        redirect to "/subscriptions"
     end
 
     delete '/subscriptions/:id/delete' do
         @subscription = Subscription.find_by(id: params[:id])
         if @subscription.user_id == current_user.id 
             @subscription.delete
-            redirect to "/show"
+            redirect to "/subscriptions"
         else 
             redirect to '/login'
         end 

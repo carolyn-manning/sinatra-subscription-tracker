@@ -1,4 +1,4 @@
-<style> th, td {padding: 5px 25px;} </style>
+<style> th, td {padding-right: 25px;} </style>
 
 <table>
   <tr>
@@ -9,9 +9,15 @@
   
     <% current_user.subscriptions.each do |subscription| %>
         <tr>
-            <td><%= subscription.name %></td>
+            <td>
+                <a href="/subscriptions/<%= subscription.id %>"> <%= subscription.name %></a>
+            </td> 
             <td><%= subscription.price %></td>
             <td><%= subscription.billing_frequency %></td>
         </tr>
     <% end %>
 </table>
+<a href="/create_subscription">Add New Subscription</a>
+<br>
+<br>
+<a href="/logout">Sign Out</a>

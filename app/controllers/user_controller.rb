@@ -1,6 +1,6 @@
 class UserController < ApplicationController
 
-    get '/show' do
+    get '/subscriptions' do
         if logged_in?
             erb :'user/show'
         else
@@ -12,7 +12,7 @@ class UserController < ApplicationController
         if !logged_in?
             erb :'user/create_user'
         else
-            redirect to '/show'
+            redirect to '/subscriptions'
         end 
     end
 
@@ -20,7 +20,7 @@ class UserController < ApplicationController
         if  params[:email] != "" && params[:password] != "" 
             @user = User.create(email: params[:email], password:params[:password] )
             session[:user_id] = @user.id
-            redirect to "/show"
+            redirect to "/subscriptions"
         else
             #flash message
             redirect to '/signup'
@@ -31,7 +31,7 @@ class UserController < ApplicationController
         if !logged_in?
             erb :'user/login'
         else
-            redirect to '/show'
+            redirect to '/subscriptions'
         end
     end
 
@@ -39,7 +39,7 @@ class UserController < ApplicationController
         @user = User.find_by(email: params[:email])
         if @user && @user.authenticate(params[:password])
             session[:user_id] = @user.id
-            redirect to '/show'
+            redirect to '/subscriptions'
         else
             redirect to '/signup'
         end
