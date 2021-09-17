@@ -1,0 +1,16 @@
+<h1>Edit <%= @subscription.name %> Subscription</h1>
+
+<form action="/subscriptions/<%= @subscription.id %>" method="POST">
+    <input type="hidden" name="_method" value="PATCH">
+
+    <label for="price">Price</label>
+    <input type="decimal" name="price" value="<%= @subscription.price %>"> </br>
+
+    <label for="billing_frequency">Billing Frequency</label>
+    <input type="text" name="billing_frequency" value="<%= @subscription.billing_frequency %>"> </br>
+
+    <label for="renewal_date">Renewal Date</label>
+    <input type="date" name="renewal_date" value="<%= @subscription.renewal_date %>"> </br>
+
+    <input type="submit" value="Save">
+</form>

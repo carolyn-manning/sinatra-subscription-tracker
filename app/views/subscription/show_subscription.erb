@@ -1,0 +1,18 @@
+<h2> <%= @subscription.name %> </h2> 
+<ul>
+   <li> Price: <%= @subscription.price %> </li>
+   <li> Billing Frequency: <%= @subscription.billing_frequency %> </li>
+   <li> Renewal Date: <%= @subscription.renewal_date %> </li>
+</ul>
+
+<br>
+
+<a href="/subscriptions/<%= @subscription.id %>/edit">Edit Subscription</a>
+
+<form method="post" action="/subscriptions/<%= @subscription.id %>/delete">
+  <input id="hidden" type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="Delete Subscription" id="submit">
+</form>
+
+
+

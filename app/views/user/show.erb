@@ -1,0 +1,17 @@
+<style> th, td {padding: 5px 25px;} </style>
+
+<table>
+  <tr>
+    <th>Subscription</th>
+    <th>Price </th>
+    <th>Billing Frequency</th>
+  </tr>
+  
+    <% current_user.subscriptions.each do |subscription| %>
+        <tr>
+            <td><%= subscription.name %></td>
+            <td><%= subscription.price %></td>
+            <td><%= subscription.billing_frequency %></td>
+        </tr>
+    <% end %>
+</table>
