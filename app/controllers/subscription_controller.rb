@@ -1,10 +1,11 @@
+
 class SubscriptionController < ApplicationController
 
     get '/create_subscription' do
         if logged_in?
             erb :'subscription/create_subscription'
         else 
-            #flash 
+            #flash[:message] = "Please log in to continue."
             redirect to '/login'
         end
     end
@@ -26,11 +27,11 @@ class SubscriptionController < ApplicationController
             if @subscription && @subscription.user == current_user 
                 erb :'subscription/show_subscription'
             else
-                #flah
+                #flash[:message] = "Please log in to continue."
                 redirect to '/login'
             end 
         else 
-            #flash
+            #flash[:message] = "Please log in to continue."
             redirect to '/login'
         end
     end
@@ -41,11 +42,11 @@ class SubscriptionController < ApplicationController
             if @subscription && @subscription.user == current_user 
                 erb :'subscription/edit_subscription'
             else
-                #flash
+                #flash[:message] = "Successfully updated subscription."
                 redirect to '/subscriptions'
             end 
         else 
-            #flash
+            flash[:message] = "Successfully updated song."
             redirect to '/login'
         end
     end

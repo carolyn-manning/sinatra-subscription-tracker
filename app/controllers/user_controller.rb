@@ -1,3 +1,4 @@
+
 class UserController < ApplicationController
 
     get '/subscriptions' do
@@ -22,7 +23,7 @@ class UserController < ApplicationController
             session[:user_id] = @user.id
             redirect to "/subscriptions"
         else
-            #flash message
+             #flash[:message] = "Please sign up to continue."
             redirect to '/signup'
         end
     end
@@ -48,7 +49,8 @@ class UserController < ApplicationController
     get '/logout' do
         if logged_in?
              session.destroy
-             #flash message
+
+             #flash[:message] = "Thank you!"
              redirect to '/login'
         else
              redirect to '/'
